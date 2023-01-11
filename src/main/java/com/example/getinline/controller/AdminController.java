@@ -27,5 +27,7 @@ public class AdminController {
     public String adminEventDetail(){
         return "admin/event-detail";
     }
+    
+    //깃테스트
 
 }
