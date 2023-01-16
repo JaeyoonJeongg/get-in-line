@@ -1,5 +1,10 @@
 package com.example.getinline.controller.api;
 
+import com.example.getinline.constant.ErrorCode;
+import com.example.getinline.dto.APIErrorResponse;
+import com.example.getinline.exception.GeneralException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,12 +15,14 @@ public class APIEventController {
 
     @GetMapping("/events")
     public List<String> getEvents(){
-        return List.of("event1","event2");
+        throw new GeneralException("테스트 메시지");
+//        return List.of("event1","event2");
     }
 
     @PostMapping("/events")
     public Boolean createEvent(){
-        return true;
+        throw new RuntimeException("테스트 메시지");
+//        return true;
     }
 
     @GetMapping("/events/{eventId}")
@@ -32,5 +39,6 @@ public class APIEventController {
     public Boolean removeEvent(@PathVariable Integer eventId){
         return true;
     }
+
 }
 
