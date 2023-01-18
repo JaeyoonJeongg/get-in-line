@@ -1,20 +1,21 @@
 package com.example.getinline.dto;
 
+import com.example.getinline.constant.ErrorCode;
 import lombok.Getter;
 import lombok.ToString;
 
 @Getter
 @ToString
-public class APIDataResponse extends com.example.getinline.dto.APIErrorResponse {
+public class APIDataResponse<T> extends com.example.getinline.dto.APIErrorResponse {
 
-    private final Object data;
+    private final T data;
 
-    private APIDataResponse(boolean success, Integer errorCode, String message, Object data) {
-        super(success, errorCode, message);
+    private APIDataResponse(T data) {
+        super(true, ErrorCode.OK.getCode(), ErrorCode.OK.getMessage());
         this.data = data;
     }
 
-    public static APIDataResponse of(boolean success, Integer errorCode, String message, Object data) {
-        return new APIDataResponse(success, errorCode, message, data);
+    public static <T> APIDataResponse<T> of(T data) {
+        return new APIDataResponse<>(data);
     }
 }
