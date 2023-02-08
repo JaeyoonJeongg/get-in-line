@@ -1,12 +1,15 @@
 package com.example.getinline.dto;
 
 import com.example.getinline.constant.ErrorCode;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
 
+
 @Getter
 @ToString
-public class APIDataResponse<T> extends com.example.getinline.dto.APIErrorResponse {
+@EqualsAndHashCode(callSuper = true)
+public class APIDataResponse<T> extends APIErrorResponse {
 
     private final T data;
 
@@ -17,5 +20,9 @@ public class APIDataResponse<T> extends com.example.getinline.dto.APIErrorRespon
 
     public static <T> APIDataResponse<T> of(T data) {
         return new APIDataResponse<>(data);
+    }
+
+    public static <T> APIDataResponse<T> empty() {
+        return new APIDataResponse<>(null);
     }
 }
